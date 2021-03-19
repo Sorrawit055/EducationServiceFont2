@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Row, Col, Button, Form, FormGroup, Label, Input,NavLink ,Alert } from 'reactstrap';
+import Swal from 'sweetalert2';
 
     const ViewEditProfile = ({id}) => {
       const initStudent = {
@@ -67,10 +68,15 @@ import { Row, Col, Button, Form, FormGroup, Label, Input,NavLink ,Alert } from '
 <div class="container">
 <Form>
 
-{submited ? (<Alert color="success"><br /><br /><br /><br />
-                   <center>อัพเดตเสร็จสิ้น!!<br /><br /><br /><br /><br />
-                    <Button color="btn btn-success" onClick={newStudent}>OK</Button></center>
-              </Alert>
+
+{submited ? (
+   Swal.fire(
+
+    'เเก้ไขข้อมูลส่วนตัวสำเร็จ',
+    ' ',
+     'success',
+ )
+ (window.location.assign("/profile/"+ student.id_stu))
                 ) : (
 <Form>
 
@@ -175,14 +181,9 @@ import { Row, Col, Button, Form, FormGroup, Label, Input,NavLink ,Alert } from '
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
-            <option value="7">8</option>
-            <option value="7">9</option>
-            <option value="7">10</option>
-            <option value="7">11</option>
-            <option value="7">12</option>
-            <option value="7">13</option>
-            <option value="7">14</option>
-            <option value="7">15</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+     
           </Input></FormGroup>
         </Col>
         <Col >

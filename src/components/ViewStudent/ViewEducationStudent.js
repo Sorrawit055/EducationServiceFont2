@@ -8,16 +8,12 @@ const ViewEducationStudent = (props) => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [university, setUniversity] = useState([]);
     //ไปดึง api ของอันเก่ามาใช้จาก url
-        const updateUniversity = () =>{
+    useEffect(() => {
             axios.get("http://localhost:8080/University/getUniversity").then((response) => {
                 console.log(response);
-                setUniversity(response.data.university);
+                setUniversity(response.data);
             });
-        };
-    
-        useEffect(() => {
-          updateUniversity();
-        }, []);
+        },[]);
     return (
         <div>
      <div class="container">
@@ -29,11 +25,10 @@ const ViewEducationStudent = (props) => {
   <FormGroup>
         <Label for="id_university">ชื่อมหาวิทยาลัย</Label>
         <Input type="select" name="id_university" id="id_university">
+        <option value="">ใส่คำค้นหา</option>  
         {university.map((university) => {
  return(
           <option value={university.id_university }>{university.name_uni}</option>
-   
-          
           );
         })}
         </Input>
@@ -41,7 +36,14 @@ const ViewEducationStudent = (props) => {
       </FormGroup>
 </Col>
         </Row>
-       
+        {/* <Row>
+<Col xs="12"> 
+<FormGroup>
+         <Input type="email" name="email" id="exampleEmail" placeholder="ค้นหามหาวิทยาลัย" />
+      </FormGroup>
+      <center><Button>ค้นหา</Button> </center>
+</Col>
+        </Row> */}
 </div>    
 <br />
 <div class="container">
@@ -55,13 +57,13 @@ const ViewEducationStudent = (props) => {
           <CardTitle tag="h5">{university.name_uni}</CardTitle>
         </CardBody>
         <CardBody>
-        <img width="100%" src="" alt="ไว้ใส่ โลโก้มหาลัย" />
+        <img width="20%" src={university.logo_uni} alt="ไว้ใส่ โลโก้มหาลัย" />
         </CardBody>
         <CardBody>
           <CardTitle >{university.detail_uni}</CardTitle>
         </CardBody>
           <Button href={university.url_uni}>ดูรายละเอียด</Button>
-      </Card>
+      </Card><br /><br />
 </Col>
         </Row>
            );

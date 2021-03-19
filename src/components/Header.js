@@ -44,6 +44,7 @@ const Header = () => {
 
     }
     const toggle = () => setIsOpen(!isOpen);
+    
     if (session.id_stu === null) {
         return (
             <div>

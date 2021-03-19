@@ -34,6 +34,7 @@ import DetailStudentEducation from "./pages/Teacher/DetailStudentEducation";
 import InsertStudent from "./pages/Admin/InsertStudent";
 import EducationConditionAll from "./pages/Teacher/EducationConditionAll";
 import Test from "./pages/Student/Test";
+import UpdateDetailEducationStudent from "./pages/Student/UpdateDetailEducationStudent";
 
 
 const App = () => {
@@ -75,6 +76,8 @@ const App = () => {
         <Route  path="/dashboardadmin" component={DashBoardAdmin} />
         <Route  path="/editeducation" component={EditEducation} />
         <Route  path="/educationconditionall" component={EducationConditionAll} />
+        <Route  path="/updatedetaileducationstudent/:id" component={UpdateDetailEducationStudent} />
+
         <Route  path="/Test" component={Test} />
         <Route  path="/Tests" component={Test} />
 

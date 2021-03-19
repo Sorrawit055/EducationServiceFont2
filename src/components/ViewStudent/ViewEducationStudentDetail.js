@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react"
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText,  Card, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle,Badge  } from 'reactstrap';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
+
 
 const ViewEducationStudentDetail = ({id}) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,6 +20,7 @@ const ViewEducationStudentDetail = ({id}) => {
     return (
         <div>
      <div class="container">
+       
      <Row>
       <Col>
             <Label for="examplePassword">มหาวิทยาลัย</Label> : {educationdataia.name_uni}
@@ -51,30 +55,31 @@ const ViewEducationStudentDetail = ({id}) => {
         </Row>
         <Row>
       <Col>
-        <Label for="exampleEmail">เปิดรับสมัคร</Label> : {educationdataia.open_date}
+        <Label for="exampleEmail">วันเปิดรับสมัคร</Label> : {educationdataia.open_date}
         </Col>  
         </Row>
         <Row>
       <Col>
-        <Label for="exampleEmail">ปิดรับสมัคร</Label> : {educationdataia.close_date}
+        <Label for="exampleEmail">วันปิดรับสมัคร</Label> : {educationdataia.close_date}
         </Col>  
         </Row>
         <Row>
       <Col>
-        <Label for="exampleEmail">วันรายงานตัว</Label> : {educationdataia.list_day}
+        <Label for="exampleEmail">วันประกาศผล</Label> : {educationdataia.list_day}
         </Col>  
         </Row>
 </div>    
 <br />
 <div class="container">
 <p> </p>
-<FormGroup>
-<h4> <Label for="exampleText">เงื่อนไข</Label></h4>
-        <Input type="textarea" name="text" id="exampleText" value={educationdataia.general}/> 
+
+<FormGroup >
+<h4> <Label for="exampleText">คุณสมบัติ</Label></h4>
+        <Input type="textarea" name="text" id="exampleText" value={educationdataia.general} style={{ width: '100%', height: '200px' }}/> 
       </FormGroup>
       <FormGroup>
 <h4> <Label for="exampleText">เอกสาร</Label></h4>
-        <Input type="textarea" name="text" id="exampleText"  value={educationdataia.doculment_edu} />
+        <Input type="textarea" name="text" id="exampleText"  value={educationdataia.doculment_edu} style={{ width: '100%', height: '250px' }}/>
       </FormGroup>
 </div>    
 <br />

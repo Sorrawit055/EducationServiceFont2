@@ -8,16 +8,13 @@ const ViewEducationStudentAllStudent = (props) => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [educationdata, setEducationdata] = useState([]);
 //ไปดึง api ของอันเก่ามาใช้จาก url
-    const updateEducationdata = () =>{
+useEffect(() => {
         axios.get("http://localhost:8080/EducationData/getAllEducationData").then((response) => {
             console.log(response);
-            setEducationdata(response.data.educationdata);
+            setEducationdata(response.data);
         });
-    };
-
-    useEffect(() => {
-      updateEducationdata();
     }, []);
+    
     return (
         <div>
      <div class="container">
@@ -28,9 +25,12 @@ const ViewEducationStudentAllStudent = (props) => {
   <FormGroup>
         <Label for="id_university">ชื่อมหาวิทยาลัย</Label>
         <Input type="select" name="id_university" id="id_university">
-          <option>มหาวิทยาลัยราชภัฏนครปฐม</option>
-          <option>มหาวิทยาลัยศิลปากร(นครปฐม)</option>
-          <option>มหาวิทยาลัยเกษตรศาสตร์กำเเพงเเสน</option>
+        <option value="">ใส่คำค้นหา</option>  
+        {educationdata.map((educationdata) => {
+ return(
+          <option value={educationdata.id_university }>{educationdata.name_uni}</option>
+          );
+        })}
         </Input>
       </FormGroup>
 </Col>
@@ -38,9 +38,12 @@ const ViewEducationStudentAllStudent = (props) => {
   <FormGroup>
         <Label for="id_faculty">คณะ</Label>
         <Input type="select" name="id_faculty" id="id_faculty">
-          <option>วิทยาศาสตร์และเทคโนโลยี</option>
-          <option>ครุศาสตร์</option>
-          <option>วิทยาการจัดการ</option>
+        <option value="">ใส่คำค้นหา</option>  
+            {educationdata.map((educationdata) => {
+ return(
+            <option value={educationdata.id_faculty}>{educationdata.name_faculty}</option>         
+             );
+        })}
         </Input>
       </FormGroup>
 </Col>
@@ -50,17 +53,25 @@ const ViewEducationStudentAllStudent = (props) => {
   <FormGroup>
         <Label for="id_course">สาขา</Label>
         <Input type="select" name="id_course" id="id_course">
-          <option>วิศวกรรมซอฟต์แวร์</option>
-          <option>การศึกษาปฐมวัย</option>
+        <option value="">ใส่คำค้นหา</option>  
+            {educationdata.map((educationdata) => {
+ return(
+            <option value={educationdata.id_course}>{educationdata.name_course}</option>         
+             );
+        })}
         </Input>
       </FormGroup>
 </Col>
 <Col xs="6"> 
   <FormGroup>
-        <Label for="id_major">หมวดสาขา</Label>
+        <Label for="id_major">กลุ่มสาขา</Label>
         <Input type="select" name="id_major" id="id_major">
-          <option>คอมพิวเตอร์</option>
-          <option>ครู</option>
+        <option value="">ใส่คำค้นหา</option>  
+            {educationdata.map((educationdata) => {
+ return(
+            <option value={educationdata.id_major}>{educationdata.name_major}</option>         
+             );
+        })}
         </Input>
       </FormGroup>
 </Col>
@@ -93,14 +104,14 @@ const ViewEducationStudentAllStudent = (props) => {
       </Row>
       <Row>
         <Col md={6}>
-            <Label for="exampleEmail">รอบที่</Label>: {educationdata.name_round}
+            <Label for="exampleEmail">รอบ</Label>: {educationdata.name_round}
         </Col>
       </Row>
     </CardBody>
        
           <Button href={"/educationstudentdetail/" + educationdata.id_education}>ดูรายละเอียด</Button>
 
-      </Card>
+      </Card><br /><br />
 </Col>
         </Row>
            );
